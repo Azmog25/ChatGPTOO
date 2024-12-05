@@ -1,20 +1,25 @@
-# Utiliser une image Python officielle
-FROM python:3.12-slim
+FROM python:3.9-slim-bullseye
 
-# Définir le répertoire de travail dans le conteneur
-WORKDIR /app
+ARG APP_USER=django
 
-# Copier requirements.txt depuis le contexte
-COPY requirements.txt ./requirements.txt
+RUN apt-get update && apt-get install --yes --no-install-recommends bash=5.1-2+deb11u1 xmlsec1=1.2.31-1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -m -U -u 1000 -s /bin/sh ${APP_USER}
 
-# Installer les dépendances Python
-RUN pip install --no-cache-dir -r requirements.txt
+COPY docker/docker-entrypoint.sh /bin/
+WORKDIR /home/${APP_USER}
 
-# Copier tous les fichiers du projet dans le conteneur
-COPY . .
+COPY ./requirements.txt .
 
-# Exposer le port 8000 pour Django
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt \
+    && chmod +x /bin/docker-entrypoint.sh
+
+COPY --chown=${APP_USER} --chmod=755 . .
+
 EXPOSE 8000
 
-# Commande par défaut pour démarrer le serveur
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+USER ${APP_USER}
+
+ENTRYPOINT [ "/bin/docker-entrypoint.sh" ]

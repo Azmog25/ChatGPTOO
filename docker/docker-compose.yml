@@ -1,37 +1,43 @@
-version: "3.8"
-
 services:
+  db:
+      image: postgres:15.5-alpine
+      container_name: database-container
+      env_file:
+        - .env
+      environment:
+        POSTGRES_DB: postgres
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+      restart: always
+      volumes:
+        - postgres-data:/var/lib/postgresql/data
+
   django:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+    env_file:
+      - .env
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=True
+      - DJANGO_LOG_LEVEL=DEBUG
+      - DB_PASSWORD=postgres
+      - DATABASE_DB=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - ALLOWED_HOSTS=["localhost", "127.0.0.1"]
     container_name: django-container
-    command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ..:/app
     ports:
       - "8000:8000"
     depends_on:
       - db
-    environment:
-      - DEBUG=True
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_NAME=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-
-  db:
-    image: postgres:15-alpine
-    container_name: postgres-container
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
+    restart: always
 
 volumes:
   postgres-data:
