@@ -19,7 +19,7 @@ from Chat.views import home, resources, advice, chat
 
 urlpatterns = [
     path('', home, name='home'),
-    path('resources/', resources, name='resources'),
+    path('ressource/', resources, name='resources'),
     path('advice/', advice, name='advice'),
     path('chat/', chat, name='chat'),
 ]

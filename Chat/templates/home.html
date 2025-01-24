@@ -1,9 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %}
 
 {% block content %}
-<h1>Learn About Risks</h1>
-<div class="card">
-    <p>Find personalized advice on health risks for geriatric patients.</p>
-    <button>Start</button>
+
+<div class="container-fluid p-0 main-container">
+    <div class="container-fluid p-0 image_home d-flex justify-content-center align-items-center">
+        <img src="{%static 'icons/image_home.png'%}" class="img-fluid" alt="..." style="width: 80em; height: 30em;">
+    </div>
+
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="card custom-card" style="width: 18rem;">
+                <div class="card-image">
+                    <img src="{%static 'icons/portrait_homme.png'%}" alt="Learn About Risks" class="rounded-circle">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Learn About RISKS</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget eros vel nisi facilisis faucibus.</p>
+                </div>
+            </div>
+            <div class="card custom-card" style="width: 18rem;">
+                <div class="card-image">
+                    <img src="{%static '/icons/portrait_femme.png'%}" alt="Learn About Risks" class="rounded-circle">
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Learn About RISKS</h5>
+                    <div class="container text-container">
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget eros vel nisi facilisis faucibus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
