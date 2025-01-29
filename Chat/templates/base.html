@@ -9,7 +9,10 @@
 
 
     <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <link rel="stylesheet" href="{%static 'css/chatbot.css'%}">
     <link rel="stylesheet" href="{%static 'css/bootstrap/bootstrap.min.css'%}">
+
+    <script src="{% static 'js/chatbot.js' %}"></script>
 </head>
 <body>
     <div class="container-fluid p-0">
@@ -22,13 +25,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/ressource">Ressource</a>
+                        <a class="nav-link" aria-current="page" href="/resources">Ressources</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/conseil">Conseil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chat">Chat</a>
+                        <a class="nav-link" href="/conseils">Conseil</a>
                     </li>
                     </ul>
                     <a class="btn btn-login" href="/login">Connexion</a>
@@ -38,6 +38,42 @@
         <main>
             {% block content %}
             {% endblock %}
+            <div class="webchat" style="height: 90%; width: 33%;">
+                <iframe
+                    style="height: 100%; width: 100%; border: none;"
+                    srcdoc='
+                    <!doctype html>
+                    <html lang="en">
+                    <head></head>
+                    <body>
+                        <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+                        <script defer>
+                        window.botpress.on("webchat:ready", (conversationId) => {
+                            botpress.open();
+                        });
+                        <!-- REPLACE THE CONTENT BELOW WITH THE JAVASCRIPT CODE YOU COPIED EARILER -->
+                        window.botpress.init({
+                            "botId": "9b299059-d830-48c4-84bf-6fdd84e045f6",
+                            "configuration": {
+                            "website": {},
+                            "email": {},
+                            "phone": {},
+                            "termsOfService": {},
+                            "privacyPolicy": {},
+                            "color": "#3B82F6",
+                            "variant": "solid",
+                            "themeMode": "light",
+                            "fontFamily": "inter",
+                            "radius": 1
+                            },
+                            "clientId": "9503a8e6-1d3b-47ac-bb17-c160654e2b7b"
+                        });
+                        <!-- REPLACE THE CONTENT ABOVE -->
+                        </script>
+                    </body>
+                    </html>'
+                ></iframe>
+            </div>
         </main>
     </div>
 </body>

@@ -5,10 +5,10 @@ def home(request):
     return render(request, 'home.html')
 
 def resources(request):
-    return render(request, 'templates/ressource.html')
+    return render(request, 'ressource.html')
 
-def advice(request):
-    return render(request, 'templates/conseil.html')
+def conseils(request):
+    return render(request, 'conseil.html')
 
-def chat(request):
-    return render(request, 'templates/chat.html')
+def geri(request):
+    return render(request, 'chat.html')

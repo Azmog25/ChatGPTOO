@@ -7,15 +7,17 @@
         <img src="{%static 'icons/image_home.png'%}" class="img-fluid" alt="..." style="width: 80em; height: 30em;">
     </div>
 
-    <div class="container-fluid">
-        <div class="row mt-2">
+    <div class="container-fluid d-flex justify-content-center align-items-center text-center mt-4">
+        <div class="row d-flex justify-content-center">
             <div class="card custom-card" style="width: 18rem;">
                 <div class="card-image">
                     <img src="{%static 'icons/portrait_homme.png'%}" alt="Learn About Risks" class="rounded-circle">
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Learn About RISKS</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget eros vel nisi facilisis faucibus.</p>
+                    <a href="{% url 'chat:conseils' %}"><h5 class="card-title">Conseils</h5></a>
+                    <div class="container text-container">
+                        <p class="card-text">Vous trouverez ici quelques conseils pour appréhender vos problèmes de santé</p>
+                    </div>
                 </div>
             </div>
             <div class="card custom-card" style="width: 18rem;">
@@ -23,9 +25,9 @@
                     <img src="{%static '/icons/portrait_femme.png'%}" alt="Learn About Risks" class="rounded-circle">
                 </div>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Learn About RISKS</h5>
+                    <a href="{% url 'chat:resources' %}"><h5 class="card-title">Articles</h5></a>
                     <div class="container text-container">
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget eros vel nisi facilisis faucibus.</p>
+                        <p class="card-text">Vous voulez en savoir plus ? Voici les études et articles utilisés pour entrainer Geri</p>
                     </div>
                 </div>
             </div>
