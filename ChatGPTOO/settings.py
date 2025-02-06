@@ -110,13 +110,21 @@ WSGI_APPLICATION = 'ChatGPTOO.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.getenv("DATABSE_DB"),
+    #     'USER': os.getenv("DATABASE_USER"),
+    #     'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+    #     'HOST': os.getenv("DATABASE_HOST"),
+    #     'PORT': os.getenv("DATABASE_PORT")
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DATABSE_DB"),
-        'USER': os.getenv("DATABASE_USER"),
-        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
-        'HOST': os.getenv("DATABASE_HOST"),
-        'PORT': os.getenv("DATABASE_PORT")
+        'NAME': 'postgres',  # Remplacez par le nom réel de votre base
+        'USER': 'postgres',  # Remplacez par votre utilisateur PostgreSQL
+        'PASSWORD': 'postgres',  # Remplacez par votre mot de passe PostgreSQL
+        'HOST': 'localhost',  # ⚠️ Remplacez "db" par "localhost"
+        'PORT': '5432',  # Le port PostgreSQL par défaut
     }
 }
 
